@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="product-table" author="tnavitski">
+    <createTable tableName="product">
+      <column name="id" type="UUID">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="title" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="description" type="TEXT"/>
+      <column name="price" type="DECIMAL(10,2)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="category_id" type="BIGINT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="status" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+      <column name="updated_at" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="product-attributes-table" author="tnavitski">
+    <createTable tableName="product_attributes">
+      <column name="product_id" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="attribute_name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="attribute_value" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="category-table" author="tnavitski">
+    <createTable tableName="category">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="name" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+      <column name="updated_at" type="TIMESTAMP"/>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="foreign-key-constraint" author="tnavitski">
+    <addForeignKeyConstraint
+      baseTableName="product"
+      baseColumnNames="category_id"
+      constraintName="fk_product_category"
+      referencedTableName="category"
+      referencedColumnNames="id"/>
+  </changeSet>
+
+</databaseChangeLog>
