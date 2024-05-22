@@ -17,4 +17,6 @@ interface ProductMapper {
 
     @Mapping(source = "category.id", target = "categoryId")
     fun toDto(entity: Product): ProductResponseDto
+
 }
+

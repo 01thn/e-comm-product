@@ -19,4 +19,5 @@ class GlobalExceptionHandler {
     fun handleElementNotFoundException(ex: ElementNotFoundException): ResponseEntity<String> {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.message)
     }
+
 }

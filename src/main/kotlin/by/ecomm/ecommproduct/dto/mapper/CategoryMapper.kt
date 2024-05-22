@@ -14,4 +14,5 @@ interface CategoryMapper {
     fun updateEntityFromDto(dto: CategoryRequestDto, @MappingTarget entity: Category)
 
     fun toDto(entity: Category): CategoryResponseDto
+
 }
