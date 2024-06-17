@@ -1,6 +1,6 @@
 package by.ecomm.ecommproduct.exception
 
-class ElementNotFoundException : Exception {
+class ProductServiceException : Exception {
 
     constructor() : super()
 

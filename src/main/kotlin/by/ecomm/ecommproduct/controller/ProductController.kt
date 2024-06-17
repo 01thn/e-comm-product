@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/api/v1/product")
 class ProductController(private val service: ProductService) {
 
     @Operation(summary = "Get all products with pagination and sorting")
@@ -113,6 +113,12 @@ class ProductController(private val service: ProductService) {
     ): ResponseEntity<ProductResponseDto> {
         val productDto = service.updateById(id, productRequest)
         return ResponseEntity(productDto, HttpStatus.OK)
+    }
+
+    @GetMapping("/{id}/exists")
+    fun checkProductAndQuantityAvailable(@PathVariable id: UUID): ResponseEntity<Void> {
+        service.productAndQuantityAvailable(id)
+        return ResponseEntity(HttpStatus.OK)
     }
 
 }

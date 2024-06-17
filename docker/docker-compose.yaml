@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-  postgres:
+  postgres-product:
     image: postgres:latest
-    container_name: my_postgres
+    container_name: ecomm_product
     environment:
-      POSTGRES_DB: my_database
+      POSTGRES_DB: ecomm_product
       POSTGRES_USER: my_user
       POSTGRES_PASSWORD: my_password
     ports:

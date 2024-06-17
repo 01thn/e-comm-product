@@ -1,7 +1,7 @@
 package by.ecomm.ecommproduct.controller.helpers
 
 import by.ecomm.ecommproduct.exception.AlreadyExistsException
-import by.ecomm.ecommproduct.exception.ElementNotFoundException
+import by.ecomm.ecommproduct.exception.ProductServiceException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -15,8 +15,8 @@ class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.message)
     }
 
-    @ExceptionHandler(ElementNotFoundException::class)
-    fun handleElementNotFoundException(ex: ElementNotFoundException): ResponseEntity<String> {
+    @ExceptionHandler(ProductServiceException::class)
+    fun handleElementNotFoundException(ex: ProductServiceException): ResponseEntity<String> {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.message)
     }
 
